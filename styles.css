@@ -1,0 +1,33 @@
+body {
+    background-color: #ced4da;
+    margin: 0px;
+    font-family: 'Roboto', system-ui,-apple-system, BlinkMacSystemFont,Arial, sans-serif; 
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 200px;
+    height: 100px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 3px 3px 3px #adb5bd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.author,
+.pages,
+.read {
+    font-size: 0.8em;
+}
