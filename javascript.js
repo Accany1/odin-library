@@ -80,7 +80,11 @@ displayBooks = () => {
         })
 
         const readBtn = document.createElement("button")
-        readBtn.textContent = "Read"
+        if (myLibrary[item].read) {
+            readBtn.textContent = "Not Read"
+        } else {
+            readBtn.textContent = "Read"
+        }
         readBtn.id = "read-btn"
         buttonContainer.appendChild(readBtn)
 
