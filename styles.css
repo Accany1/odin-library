@@ -1,6 +1,7 @@
 body {
     background-color: #ced4da;
     margin: 0px;
+    width: 100%;
     font-family: 'Roboto', system-ui,-apple-system, BlinkMacSystemFont,Arial, sans-serif; 
 }
 
@@ -23,7 +24,9 @@ button {
 
 #main {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .card {
@@ -47,4 +50,29 @@ button {
 .pages,
 .read {
     font-size: 0.8em;
+}
+
+dialog {
+    width: 400px;
+
+}
+
+.form-inputs {
+    display: grid;
+    margin-bottom: 15px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio-inputs {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    grid-template-rows: 25px 25px;
+    justify-items: left;
+    align-items: center;
+    margin-bottom: 15px;
 }

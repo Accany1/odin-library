@@ -26,6 +26,7 @@ displayBooks = (myLibrary) => {
     let titleList = []
 
     const container = document.querySelector("#main")
+    container.innerHTML = ""
 
     
 
@@ -62,12 +63,59 @@ displayBooks = (myLibrary) => {
     }
 }
 
+// template books
 addBookToLibrary('The Lord of the Rings', 'J. R. R. Tolkien', '1077', false)
 addBookToLibrary('1984', 'George Orwell', '328', true)
 addBookToLibrary('Kafka on the Shore', 'Haruki Murakami', '505', false)
 
+const bookDialog = document.getElementById("book-dialog")
+const bookForm = document.getElementById('book-form')
+const bookInput = document.getElementById("book-name")
+const authorInput = document.getElementById("author-name")
+const pagesInput = document.getElementById("pages")
+const readInput = document.getElementsByName("reading")
+const cfmBtn = document.getElementById("confirm-btn")
+const cancelBtn = document.getElementById("cancel-btn")
+
+
 displayBooks(myLibrary)
 
-console.log('myLibrary')
+// add book button
+const zero = document.querySelector('#addBookButton')
+zero.addEventListener("click", () => {
+    bookDialog.showModal()
+})
+
+// confirm button logic
+cfmBtn.addEventListener("click", () => {
+    if (bookForm.checkValidity()) {
+        console.log(bookInput.value)
+        console.log(authorInput.value)
+        console.log(pagesInput.value)
+        
+        let readValue = false
+
+        for (i = 0; i < readInput.length; i++) {
+            if (readInput[i].checked) {
+                if (readInput[i].value === "read"){
+                    readValue = true
+                }
+            }
+        }
+
+        addBookToLibrary(bookInput.value, authorInput.value, pagesInput.value, readValue)
+
+        displayBooks(myLibrary)
+
+        event.preventDefault()
+        bookDialog.close()
+    }
+})
+
+// cancel button logic
+cancelBtn.addEventListener("click", () => {
+    event.preventDefault()
+    bookDialog.close()
+})
 
 

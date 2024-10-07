@@ -7,8 +7,35 @@
     <title>Document</title>
 </head>
 <body>
+    <dialog id="book-dialog">
+        <form id="book-form">
+            <div class="form-inputs">
+                <label for="book-name">Book Name: </label>
+                <input type="text" id="book-name" required>
+            </div>
+            <div class="form-inputs">
+                <label for="author-name">Author Name: </label>
+                <input type="text" id="author-name" required>
+            </div>
+            <div class="form-inputs">
+                <label for="pages">Pages: </label>
+                <input type="number" id="pages" required>
+            </div>
+            <div>Read Before?</div>
+            <div class="radio-inputs">
+                <input type="radio" id="read" name="reading" checked value="read">
+                <label for="read">Read: </label>
+                <input type="radio" id="not-read" name="reading" value="not read">
+                <label for="not-read">Not Read:</label>
+            </div>
+            <div class="button-container">
+                <button id="cancel-btn" value="cancel" formmethod="dialog">Cancel</button>
+                <button id="confirm-btn" value="submit">Confirm</button>
+            </div>
+        </form>
+    </dialog>
     <div class="button">
-        <button>New Book</button>
+        <button id="addBookButton">New Book</button>
     </div>
     <div id="main"></div>
     <script src="javascript.js"></script>
