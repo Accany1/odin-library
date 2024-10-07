@@ -31,7 +31,7 @@ button {
 
 .card {
     width: 200px;
-    height: 100px;
+    height: 150px;
     background-color: #f8f9fa;
     border-radius: 10px;
     margin: 20px;
@@ -76,3 +76,8 @@ dialog {
     align-items: center;
     margin-bottom: 15px;
 }
+
+#delete-btn {
+    align-self: center;
+}
+

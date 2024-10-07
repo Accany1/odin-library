@@ -22,7 +22,7 @@ addBookToLibrary = (title, author, pages, read) => {
     myLibrary.push(newBook)
 }
 
-displayBooks = (myLibrary) => {
+displayBooks = () => {
     let titleList = []
 
     const container = document.querySelector("#main")
@@ -60,6 +60,16 @@ displayBooks = (myLibrary) => {
             read.textContent = "Not read"
         }
         card.appendChild(read)
+
+        const delBtn = document.createElement("button")
+        delBtn.textContent = "Delete Book"
+        delBtn.id = "delete-btn"
+        card.appendChild(delBtn)
+
+        delBtn.addEventListener("click", () => {
+            myLibrary.splice(item,1)
+            displayBooks()
+        })
     }
 }
 
@@ -78,7 +88,7 @@ const cfmBtn = document.getElementById("confirm-btn")
 const cancelBtn = document.getElementById("cancel-btn")
 
 
-displayBooks(myLibrary)
+displayBooks()
 
 // add book button
 const zero = document.querySelector('#addBookButton')
