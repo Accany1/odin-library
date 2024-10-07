@@ -18,7 +18,11 @@ function Book (title, author, pages, read) {
 }
 
 addBookToLibrary = (title, author, pages, read) => {
-    const newBook = new Book(title, author, pages, read)
+    let readBool = false
+    if (read === "read") {
+        readBool = true
+    }
+    const newBook = new Book(title, author, pages, readBool)
     myLibrary.push(newBook)
 }
 
@@ -61,22 +65,36 @@ displayBooks = () => {
         }
         card.appendChild(read)
 
+        const buttonContainer = document.createElement("div")
+        buttonContainer.classList.add("button-container")
+        card.appendChild(buttonContainer)
+
         const delBtn = document.createElement("button")
         delBtn.textContent = "Delete Book"
         delBtn.id = "delete-btn"
-        card.appendChild(delBtn)
+        buttonContainer.appendChild(delBtn)
 
         delBtn.addEventListener("click", () => {
             myLibrary.splice(item,1)
+            displayBooks()
+        })
+
+        const readBtn = document.createElement("button")
+        readBtn.textContent = "Read"
+        readBtn.id = "read-btn"
+        buttonContainer.appendChild(readBtn)
+
+        readBtn.addEventListener("click", () => {
+            myLibrary[item].read = !myLibrary[item].read
             displayBooks()
         })
     }
 }
 
 // template books
-addBookToLibrary('The Lord of the Rings', 'J. R. R. Tolkien', '1077', false)
-addBookToLibrary('1984', 'George Orwell', '328', true)
-addBookToLibrary('Kafka on the Shore', 'Haruki Murakami', '505', false)
+addBookToLibrary('The Lord of the Rings', 'J. R. R. Tolkien', '1077', "not read")
+addBookToLibrary('1984', 'George Orwell', '328', "read")
+addBookToLibrary('Kafka on the Shore', 'Haruki Murakami', '505', "not read")
 
 const bookDialog = document.getElementById("book-dialog")
 const bookForm = document.getElementById('book-form')
