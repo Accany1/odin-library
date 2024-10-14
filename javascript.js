@@ -1,12 +1,14 @@
 const myLibrary = []
 
-function Book (title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
 
-    this.info = () => {
+    info = () => {
         let reading = ""
         if (this.read){
             reading = "read"
@@ -17,88 +19,99 @@ function Book (title, author, pages, read) {
     }
 }
 
-addBookToLibrary = (title, author, pages, read) => {
-    let readBool = false
-    if (read === "read") {
-        readBool = true
+class addBookToLibrary {
+    constructor() {
     }
-    const newBook = new Book(title, author, pages, readBool)
-    myLibrary.push(newBook)
+
+    newBook = (title, author, pages, read) => {
+        let readBool = false
+        if (read === "read") {
+            readBool = true
+        }
+        const newBook = new Book(title, author, pages, readBool)
+        myLibrary.push(newBook)
+    }
 }
 
-displayBooks = () => {
-    let titleList = []
+class displayBooks{
+    constructor() {
+    }
 
-    const container = document.querySelector("#main")
-    container.innerHTML = ""
+    displayBooks = () => {
+        let titleList = []
 
-    
+        const container = document.querySelector("#main")
+        container.innerHTML = ""
 
-    for (let item in myLibrary) {
-        titleList.push(myLibrary[item].title)
+        
 
-        const card = document.createElement("div")
-        card.classList.add("card")
-        container.appendChild(card);
+        for (let item in myLibrary) {
+            titleList.push(myLibrary[item].title)
 
-        const title = document.createElement("div")
-        title.classList.add("title")
-        title.textContent = myLibrary[item].title
-        card.appendChild(title)
+            const card = document.createElement("div")
+            card.classList.add("card")
+            container.appendChild(card);
 
-        const author = document.createElement("div")
-        author.classList.add("author")
-        author.textContent = myLibrary[item].author
-        card.appendChild(author)
+            const title = document.createElement("div")
+            title.classList.add("title")
+            title.textContent = myLibrary[item].title
+            card.appendChild(title)
 
-        const pages = document.createElement("div")
-        pages.classList.add("pages")
-        pages.textContent = "Pages: " + myLibrary[item].pages
-        card.appendChild(pages)
+            const author = document.createElement("div")
+            author.classList.add("author")
+            author.textContent = myLibrary[item].author
+            card.appendChild(author)
 
-        const read = document.createElement("div")
-        read.classList.add("read")
-        if (myLibrary[item].read) {
-            read.textContent = "Read"
-        } else {
-            read.textContent = "Not read"
-        }
-        card.appendChild(read)
+            const pages = document.createElement("div")
+            pages.classList.add("pages")
+            pages.textContent = "Pages: " + myLibrary[item].pages
+            card.appendChild(pages)
 
-        const buttonContainer = document.createElement("div")
-        buttonContainer.classList.add("button-container")
-        card.appendChild(buttonContainer)
+            const read = document.createElement("div")
+            read.classList.add("read")
+            if (myLibrary[item].read) {
+                read.textContent = "Read"
+            } else {
+                read.textContent = "Not read"
+            }
+            card.appendChild(read)
 
-        const delBtn = document.createElement("button")
-        delBtn.textContent = "Delete Book"
-        delBtn.id = "delete-btn"
-        buttonContainer.appendChild(delBtn)
+            const buttonContainer = document.createElement("div")
+            buttonContainer.classList.add("button-container")
+            card.appendChild(buttonContainer)
 
-        delBtn.addEventListener("click", () => {
-            myLibrary.splice(item,1)
-            displayBooks()
-        })
+            const delBtn = document.createElement("button")
+            delBtn.textContent = "Delete Book"
+            delBtn.id = "delete-btn"
+            buttonContainer.appendChild(delBtn)
 
-        const readBtn = document.createElement("button")
-        if (myLibrary[item].read) {
-            readBtn.textContent = "Not Read"
-        } else {
-            readBtn.textContent = "Read"
-        }
-        readBtn.id = "read-btn"
-        buttonContainer.appendChild(readBtn)
+            delBtn.addEventListener("click", () => {
+                myLibrary.splice(item,1)
+                displayBooksClass.displayBooks()
+            })
 
-        readBtn.addEventListener("click", () => {
-            myLibrary[item].read = !myLibrary[item].read
-            displayBooks()
-        })
+            const readBtn = document.createElement("button")
+            if (myLibrary[item].read) {
+                readBtn.textContent = "Not Read"
+            } else {
+                readBtn.textContent = "Read"
+            }
+            readBtn.id = "read-btn"
+            buttonContainer.appendChild(readBtn)
+
+            readBtn.addEventListener("click", () => {
+                myLibrary[item].read = !myLibrary[item].read
+                displayBooksClass.displayBooks()
+            })}
     }
 }
 
 // template books
-addBookToLibrary('The Lord of the Rings', 'J. R. R. Tolkien', '1077', "not read")
-addBookToLibrary('1984', 'George Orwell', '328', "read")
-addBookToLibrary('Kafka on the Shore', 'Haruki Murakami', '505', "not read")
+const addBookClass = new addBookToLibrary()
+
+addBookClass.newBook('The Lord of the Rings', 'J. R. R. Tolkien', '1077', "not read")
+addBookClass.newBook('1984', 'George Orwell', '328', "read")
+addBookClass.newBook('Kafka on the Shore', 'Haruki Murakami', '505', "not read")
 
 const bookDialog = document.getElementById("book-dialog")
 const bookForm = document.getElementById('book-form')
@@ -110,7 +123,8 @@ const cfmBtn = document.getElementById("confirm-btn")
 const cancelBtn = document.getElementById("cancel-btn")
 
 
-displayBooks()
+const displayBooksClass = new displayBooks()
+displayBooksClass.displayBooks()
 
 // add book button
 const zero = document.querySelector('#addBookButton')
@@ -135,9 +149,9 @@ cfmBtn.addEventListener("click", () => {
             }
         }
 
-        addBookToLibrary(bookInput.value, authorInput.value, pagesInput.value, readValue)
+        addBookClass.newBook(bookInput.value, authorInput.value, pagesInput.value, readValue)
 
-        displayBooks(myLibrary)
+        displayBooksClass.displayBooks(myLibrary)
 
         event.preventDefault()
         bookDialog.close()
